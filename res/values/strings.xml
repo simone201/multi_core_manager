@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Multi-Core Manager</string>
+    <string name="main_category_title">Enable/Disable Multi-Core</string>
+    <string name="multicore_switch_title">Dynamic Hotplug</string>
+    <string name="multicore_switch_summary">Auto Hotplug Switch</string>
+    <string name="manual_management_maintitle">Manual Core Management</string>
+    <string name="cores_nr_title">Active Cores</string>
+    <string name="cores_nr_summary">Select the Nr of Active Cores</string>
+    <string name="cores_nr_dialogtitle">Active Cores:</string>
+    <string name="multicore_pref">multicore_switch</string>
+    <string name="cores_nr_prefs">cores_nr_preference</string>
+    <string name="additional_infos_title">More Infos</string>
+    <string name="author_title">Author:</string>
+    <string name="author_summary">simone201 @XDADevs</string>
+    <string name="version_title">Version:</string>
+    <string name="version_summary">v1.0</string>
+    <string name="general_title">General</string>
+    <string name="cores_online_title">Current Active Cores:</string>
+    <string name="cores_on_prefs">cores_online_pref</string>
+    <string name="cores_nr_def_value">4</string>
+    <string name="author_prefs">author_pref</string>
+    <string name="cores_online_summary">Active Cores</string>
+
+</resources>

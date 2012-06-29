@@ -1,0 +1,54 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" >
+    
+	<PreferenceCategory
+            android:title="Infos">
+    
+   	 	<Preference
+                android:key="cores_online_pref"
+                android:title="@string/cores_online_title"
+                android:summary="@string/cores_online_summary" />
+    
+   	</PreferenceCategory>
+   	 	
+    <PreferenceCategory
+            android:title="@string/main_category_title">
+
+        <CheckBoxPreference
+                android:key="multicore_switch"
+                android:title="@string/multicore_switch_title"
+                android:summary="@string/multicore_switch_summary" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+            android:title="@string/manual_management_maintitle">
+
+        <ListPreference
+                android:key="cores_nr_preference"
+                android:title="@string/cores_nr_title"
+                android:summary="@string/cores_nr_summary"
+                android:entries="@array/cores_array"
+                android:entryValues="@array/cores_values"
+                android:dialogTitle="@string/cores_nr_dialogtitle"
+                android:defaultValue="@string/cores_nr_def_value" />
+
+    </PreferenceCategory>
+    
+     <PreferenceCategory
+            android:title="@string/additional_infos_title">
+
+        <Preference
+                android:key="author_pref"
+                android:title="@string/author_title"
+                android:summary="@string/author_summary" />
+        
+        <Preference
+                android:key="version_pref"
+                android:title="@string/version_title"
+                android:summary="@string/version_summary" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>
