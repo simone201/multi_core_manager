@@ -1,7 +1,7 @@
 package com.near.multicore.manager;
 
 import com.near.multicore.manager.R;
-import com.near.multicore.manager.SysTools;
+import com.near.multicore.manager.utils.SysTools;
 
 import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceActivity;
@@ -13,9 +13,11 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.content.res.Resources;
-import android.util.Log;
 import android.widget.Toast;
 
 import java.io.File;
@@ -26,6 +28,7 @@ public class MultiCoreManagerActivity extends PreferenceActivity {
 	
 	private CheckBoxPreference multiSwitch;
 	private ListPreference coresList;
+	private CheckBoxPreference setBoot;
 	private Preference author;
 	private Preference online;
 	
@@ -65,6 +68,15 @@ public class MultiCoreManagerActivity extends PreferenceActivity {
         	}
         });
         
+        setBoot.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+        	@Override
+            public boolean onPreferenceChange(Preference preference,
+                    Object newValue) {
+        		setOnBoot(Boolean.parseBoolean(String.valueOf(newValue)));
+        		return true;
+        	}
+        });
+        
         // Select the nr of cores enabled
         coresList.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
         	@Override
@@ -81,7 +93,7 @@ public class MultiCoreManagerActivity extends PreferenceActivity {
         	@Override
         	public boolean onPreferenceClick(Preference pref) {
         		Intent myIntent = new Intent(Intent.ACTION_VIEW,
-        				Uri.parse("http://forum.xda-developers.com/showthread.php?t=1576355"));
+        				Uri.parse("http://forum.xda-developers.com/showthread.php?t=1741385"));
         				startActivity(myIntent);
         		return true;
         	}
@@ -132,13 +144,29 @@ public class MultiCoreManagerActivity extends PreferenceActivity {
     	
     	multiSwitch = (CheckBoxPreference) findPreference(res.getString(R.string.multicore_pref));
     	coresList = (ListPreference) findPreference(res.getString(R.string.cores_nr_prefs));
+    	setBoot = (CheckBoxPreference) findPreference(res.getString(R.string.prefSAVEBOOT));
     	author = (Preference) findPreference(res.getString(R.string.author_prefs));
     	online = (Preference) findPreference(res.getString(R.string.cores_on_prefs));
-    
+    	
     	coresList.setEnabled(!checkHotplugOn());
     	coresList.setDefaultValue(getCores());
     	
     	multiSwitch.setChecked(checkHotplugOn());
+    }
+    
+    // Set on Boot
+    private void setOnBoot(boolean state) {
+    	savePreferences();
+    }
+    
+    // Save Preferences for save on boot
+    private void savePreferences() {
+    	SharedPreferences prefs = getSharedPreferences("boot_prefs", Context.MODE_PRIVATE);
+    	Editor edit = prefs.edit();
+    	edit.putBoolean("HOTPLUG_ON", multiSwitch.isChecked());
+    	edit.putBoolean("SET_ON_BOOT", setBoot.isChecked());
+    	edit.putInt("NR_OF_CORES", Integer.parseInt(coresList.getValue()));
+    	edit.commit();
     }
     
     // Updating Cores ListPreference (and set hotplug on/off)
@@ -170,7 +198,7 @@ public class MultiCoreManagerActivity extends PreferenceActivity {
     }
     
     // Set the nr of cores enabled in the interface
-    private void changeCores(int value) {    	
+    private void changeCores(int value) {
     	sys.writeToFile("echo " + value + " > /sys/devices/virtual/misc/multi_core/cores_on");
     }
     

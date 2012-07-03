@@ -34,6 +34,11 @@
                 android:dialogTitle="@string/cores_nr_dialogtitle"
                 android:defaultValue="@string/cores_nr_def_value" />
 
+        <CheckBoxPreference
+                android:key="save_on_boot"
+                android:title="@string/save_on_boot_title"
+                android:summary="@string/save_on_boot_summary" />
+        
     </PreferenceCategory>
     
      <PreferenceCategory

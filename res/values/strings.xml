@@ -15,12 +15,15 @@
     <string name="author_title">Author:</string>
     <string name="author_summary">simone201 @XDADevs</string>
     <string name="version_title">Version:</string>
-    <string name="version_summary">v1.0</string>
+    <string name="version_summary">v1.1</string>
     <string name="general_title">General</string>
     <string name="cores_online_title">Current Active Cores:</string>
     <string name="cores_on_prefs">cores_online_pref</string>
     <string name="cores_nr_def_value">4</string>
     <string name="author_prefs">author_pref</string>
     <string name="cores_online_summary">Active Cores</string>
+    <string name="save_on_boot_title">Set on Boot</string>
+    <string name="save_on_boot_summary">Set your current settings on boot</string>
+    <string name="prefSAVEBOOT">save_on_boot</string>
 
 </resources>
